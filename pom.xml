@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+             https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.5.3</version>
+        <relativePath/>
+    </parent>
+    <!-- reverse-domain namespace -->
+    <groupId>com.pathwaytracker</groupId>
+    <artifactId>pathway-tracker</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <!-- combines to give a filename ofpathway-tracker-0.0.1-SNAPSHOT.jar -->
+    <packaging>jar</packaging>
+    <name>pathway-tracker</name>
+    <description>Case management API — interview prep project</description>
+    <properties>
+        <!-- default is Java 8 this allows new features like records and patterns -->
+        <java.version>21</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <!-- dependencies -->
+
+    <dependencies>
+
+            <!-- Group 1: Spring Boot web + validation -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        <!-- 
+            └── jackson-databind          ← JSON serialisation/deserialisation
+            └── spring-webmvc             ← @RestController, @RequestMapping, etc.
+            └── spring-boot-autoconfigure ← wires Jackson into Spring MVC automatically 
+        -->
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+
+            <!-- Group 2: Database -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.microsoft.sqlserver</groupId>
+            <artifactId>mssql-jdbc</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+                <!-- Group 3: Utilities -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <!-- annotation processing -->
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+                <!-- Group 4: Testing -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    <!-- spring-boot-maven-plugin is what gives you ./mvnw spring-boot:run -->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
